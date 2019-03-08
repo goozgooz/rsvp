@@ -21,7 +21,6 @@ class App extends Component {
   }
   
   toggleConfirm = (index) => {
-    console.log(index)
     this.setState(prevState => ({
       guests: prevState.guests.map((guest, i) => {
         if (index === i) {
@@ -32,6 +31,7 @@ class App extends Component {
       })
     }))
   }
+ 
   
   render() {
     return (

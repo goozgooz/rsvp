@@ -10,7 +10,7 @@ const Guest = (props) => {
         <input 
           type="checkbox" 
           checked={guest.isConfirmed} 
-          onChange={() => toggleConfirm(index)} 
+          onChange={toggleConfirm} 
         /> 
           Confirmed
       </label>
@@ -26,6 +26,7 @@ Guest.propTypes = {
   guest: PropTypes.shape({
     name: PropTypes.string.isRequired,
     isConfirmed: PropTypes.bool.isRequired
-  })
+  }),
+  toggleConfirm: PropTypes.func.isRequired
 };
 export default Guest ;
