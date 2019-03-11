@@ -1,11 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import GuestName from './GuestName';
+
 const Guest = (props) => {
-  let {guest, toggleConfirm, index} = props;
+  let {guest, toggleConfirm, toggleEdit, editName, index} = props;
   return (
     <li>
-      <span>{guest.name}</span>
+      <GuestName 
+        isEditing={guest.isEditing} 
+        name={guest.name} 
+        editName={(e) => editName(e.target.value)}
+      /> 
       <label>
         <input 
           type="checkbox" 
@@ -15,7 +21,7 @@ const Guest = (props) => {
           Confirmed
       </label>
       
-      <button>edit</button>
+      <button onClick={toggleEdit}>edit</button>
       <button>remove</button>
     </li>
   )
@@ -25,8 +31,11 @@ const Guest = (props) => {
 Guest.propTypes = {
   guest: PropTypes.shape({
     name: PropTypes.string.isRequired,
-    isConfirmed: PropTypes.bool.isRequired
+    isConfirmed: PropTypes.bool.isRequired,
+    isEditing: PropTypes.bool.isRequired
   }),
-  toggleConfirm: PropTypes.func.isRequired
+  toggleConfirm: PropTypes.func.isRequired,
+  toggleEdit: PropTypes.func.isRequired,
+  editName: PropTypes.func.isRequired,
 };
 export default Guest ;

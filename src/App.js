@@ -7,11 +7,13 @@ class App extends Component {
     guests: [
       {
         name: 'Treasure',
-        isConfirmed: false
+        isConfirmed: false,
+        isEditing: false
       },
       {
         name: 'Ashkaan',
         isConfirmed: true,
+        isEditing: true
       }
     ],
   }
@@ -20,17 +22,39 @@ class App extends Component {
     return this.state.guests.length;
   }
   
-  toggleConfirm = (index) => {
+  editName = (i, newName) => {
     this.setState(prevState => ({
-      guests: prevState.guests.map((guest, i) => {
-        if (index === i) {
-          return {...guest, isConfirmed: !guest.isConfirmed}
+      guests: prevState.guests.map((guest, index) => {
+        if (i === index) {
+          return {...guest, name: newName};
         } else {
           return guest;
         }
       })
     }))
   }
+  
+  toggleSwitch = (index, property) => {
+    this.setState(prevState => ({
+      guests: prevState.guests.map((guest, i) => {
+        if (index === i) {
+          return {...guest, [property]: !guest[property]}
+        } else {
+          return guest;
+        }
+      })
+    }))
+  }
+  
+  
+  
+  toggleEdit = (i) => {
+    this.toggleSwitch(i, 'isEditing');
+  }
+  toggleConfirm = (i) => {
+    this.toggleSwitch(i, 'isConfirmed');
+  }
+
 
   render() {
     return (
@@ -66,7 +90,12 @@ class App extends Component {
               </tr>
             </tbody>
           </table>
-          <GuestList guests = {this.state.guests} toggleConfirm={this.toggleConfirm}/>
+          <GuestList 
+            guests = {this.state.guests} 
+            toggleEdit={this.toggleEdit}
+            toggleConfirm={this.toggleConfirm}
+            editName={this.editName}
+          />
         </div>
       </div>
     );
