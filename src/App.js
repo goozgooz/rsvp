@@ -22,11 +22,11 @@ class App extends Component {
     return this.state.guests.length;
   }
   
-  editName = (i, newName) => {
+  editName = (i, name) => {
     this.setState(prevState => ({
       guests: prevState.guests.map((guest, index) => {
         if (i === index) {
-          return {...guest, name: newName};
+          return {...guest, name};
         } else {
           return guest;
         }
@@ -45,7 +45,6 @@ class App extends Component {
       })
     }))
   }
-  
   
   
   toggleEdit = (i) => {

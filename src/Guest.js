@@ -21,7 +21,7 @@ const Guest = (props) => {
           Confirmed
       </label>
       
-      <button onClick={toggleEdit}>edit</button>
+      <button onClick={toggleEdit}> {guest.isEditing ? 'save' : 'edit'}</button>
       <button>remove</button>
     </li>
   )
