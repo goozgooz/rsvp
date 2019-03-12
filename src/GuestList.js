@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Guest from './Guest';
 
 const GuestList = (props) => {
-  let {isFiltered, guests, toggleConfirm, toggleEdit, editName} = props;
+  let {isFiltered, guests, toggleConfirm, toggleEdit, editName, removeGuest} = props;
   
   if (isFiltered) {
     guests = guests.filter(guest => guest.isConfirmed);
@@ -16,6 +16,7 @@ const GuestList = (props) => {
       toggleConfirm={() => toggleConfirm(i)}
       toggleEdit={() => toggleEdit(i)}
       editName={(newName) => editName(i, newName)}
+      removeGuest={() => removeGuest(i)} 
     />
   ));
   
@@ -31,6 +32,7 @@ GuestList.propTypes = {
   editName: PropTypes.func.isRequired,
   guests: PropTypes.array.isRequired,
   toggleConfirm: PropTypes.func.isRequired,
-  toggleEdit: PropTypes.func.isRequired
+  toggleEdit: PropTypes.func.isRequired,
+  removeGuest: PropTypes.func.isRequired,
 };
 export default GuestList;

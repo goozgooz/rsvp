@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import GuestName from './GuestName';
 
 const Guest = (props) => {
-  let {guest, toggleConfirm, toggleEdit, editName, index} = props;
+  let {guest, toggleConfirm, toggleEdit, editName, removeGuest} = props;
   return (
     <li>
       <GuestName 
@@ -22,7 +22,7 @@ const Guest = (props) => {
       </label>
       
       <button onClick={toggleEdit}> {guest.isEditing ? 'save' : 'edit'}</button>
-      <button>remove</button>
+      <button onClick={removeGuest}>remove</button>
     </li>
   )
 }
@@ -37,5 +37,6 @@ Guest.propTypes = {
   toggleConfirm: PropTypes.func.isRequired,
   toggleEdit: PropTypes.func.isRequired,
   editName: PropTypes.func.isRequired,
+  removeGuest: PropTypes.func.isRequired,
 };
 export default Guest ;

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import GuestList from './GuestList';
+import AddGuestForm from './AddGuestForm';
 
 class App extends Component {
   state = {
@@ -17,6 +18,21 @@ class App extends Component {
         isEditing: true
       }
     ],
+  }
+  removeGuest = (index) => {
+    this.setState(prevState => ({
+      guests: prevState.guests.filter((guest,i) => i !== index)
+    }))
+  }
+  addNewGuest = (guestName) => {
+    let newGuest = {
+      name: guestName,
+      isConfirmed: false,
+      isEditing: false,
+    }
+    this.setState(prevState => ({
+      guests: [...prevState.guests, newGuest]
+    }))
   }
   
   toggleFilter = () => {
@@ -66,10 +82,7 @@ class App extends Component {
         <header>
           <h1>RSVP</h1>
           <p>A Treehouse App</p>
-          <form>
-            <input type="text" value="Safia" placeholder="Invite Someone" />
-            <button type="submit" name="submit" value="submit">Submit</button>
-          </form>
+          <AddGuestForm addNewGuest={this.addNewGuest} />
         </header>
         <div className="main">
           <div>
@@ -104,6 +117,7 @@ class App extends Component {
             toggleConfirm={this.toggleConfirm}
             editName={this.editName}
             isFiltered={this.state.isFiltered}
+            removeGuest={this.removeGuest}
           />
         </div>
       </div>
