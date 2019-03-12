@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import GuestList from './GuestList';
 import AddGuestForm from './AddGuestForm';
+import Counter from './Counter';
 
 class App extends Component {
   state = {
@@ -37,10 +38,6 @@ class App extends Component {
   
   toggleFilter = () => {
     this.setState({isFiltered: !this.state.isFiltered});
-  }
-  
-  getTotalInvite = () => {
-    return this.state.guests.length;
   }
   
   editName = (i, name) => {
@@ -95,22 +92,7 @@ class App extends Component {
               /> Hide those who haven't responded
             </label>
           </div>
-          <table className="counter">
-            <tbody>
-              <tr>
-                <td>Attending:</td>
-                <td>2</td>
-              </tr>
-              <tr>
-                <td>Unconfirmed:</td>
-                <td>1</td>
-              </tr>
-              <tr>
-                <td>Total:</td>
-                <td>3</td>
-              </tr>
-            </tbody>
-          </table>
+          <Counter guests={this.state.guests} />
           <GuestList 
             guests = {this.state.guests} 
             toggleEdit={this.toggleEdit}
